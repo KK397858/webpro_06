@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>積を求めるゲーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .game-container {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .game-result {
+            font-size: 30px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>2桁の数字の積を求めよう！</h1>
+    
+    <div class="game-container">
+        <p><strong>次の数字の積を計算してください:</strong></p>
+        <p><%= num1 %> × <%= num2 %> = ?</p>
+    </div>
+
+    <!-- プレイヤーが答えるフォーム -->
+    <form action="/math-game" method="POST">
+        <input type="hidden" name="num1" value="<%= num1 %>">
+        <input type="hidden" name="num2" value="<%= num2 %>">
+        <input type="number" name="answer" placeholder="答えを入力" required>
+        <button type="submit">送信</button>
+    </form>
+
+    <% if (result) { %>
+        <div class="game-result">
+            <p>あなたの答え: <%= playerAnswer %></p>
+            <p>正解の答え: <%= correctAnswer %></p>
+            <p>結果: <%= result %></p>
+        </div>
+    <% } %>
+
+    <div class="game-container">
+        <p>もう一度チャレンジしたい場合は、ページをリロードしてください。</p>
+    </div>
+
+</body>
+</html>

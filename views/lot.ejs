@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あっち向いてホイ - 勝負</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .direction {
+            font-size: 20px;
+            margin: 10px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .score {
+            margin-top: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>あっち向いてホイ - 勝負</h1>
+    
+    <div class="result">
+        <p><strong>あなたの選んだ方向:</strong> <%= your %></p>
+        <p><strong>コンピュータの選んだ方向:</strong> <%= cpu %></p>
+        <p><strong>結果:</strong> <%= judgement %></p>
+    </div>
+
+    <div class="score">
+        <p>試合数: <%= total %></p>
+        <p>プレイヤーの勝利数: <%= win %></p>
+    </div>
+
+    <div class="direction">
+        <p>次の方向を選んでください:</p>
+        <a href="/lot?dire=上&win=<%= win %>&total=<%= total %>">上</a>
+        <a href="/lot?dire=右&win=<%= win %>&total=<%= total %>">右</a>
+        <a href="/lot?dire=下&win=<%= win %>&total=<%= total %>">下</a>
+        <a href="/lot?dire=左&win=<%= win %>&total=<%= total %>">左</a>
+    </div>
+
+</body>
+</html>

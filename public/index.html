@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あっち向いてホイ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>あっち向いてホイ</h1>
+    
+    <!-- プレイヤーの方向選択フォーム -->
+    <div class="direction">
+        <label for="playerChoice">あなたの向き: </label>
+        <select id="playerChoice">
+            <option value="上">上</option>
+            <option value="下">下</option>
+            <option value="左">左</option>
+            <option value="右">右</option>
+        </select>
+    </div>
+
+    <div class="direction">
+        <button onclick="playGame()">あっち向いてホイ！</button>
+    </div>
+    
+    <div class="result" id="result"></div>
+
+    <!-- 結果表示 -->
+    <div class="score">
+        <p>試合数: <span id="totalGames">0</span></p>
+        <p>プレイヤーの勝利数: <span id="playerWins">0</span></p>
+    </div>
+
+    <!-- JavaScriptファイルを外部読み込み -->
+    <script src="script.js"></script>
+</body>
+</html>
