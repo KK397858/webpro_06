@@ -1,0 +1,39 @@
+<!-- delete.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿の削除</title>
+</head>
+<body>
+  <h1>投稿の削除</h1>
+
+  <!-- 投稿の削除フォーム -->
+  <form id="deleteForm">
+    <input type="number" id="deletePostId" placeholder="削除する投稿ID" required>
+    <button type="button" onclick="deletePost()">削除</button>
+  </form>
+
+  <script>
+    function deletePost() {
+      const postId = document.getElementById("deletePostId").value;
+
+      fetch('/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: postId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          // 削除が成功した場合、ページをリロードして投稿を更新
+          location.reload();
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    }
+  </script>
+</body>
+</html>

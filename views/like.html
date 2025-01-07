@@ -1,0 +1,35 @@
+<!-- like.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿のいいね</title>
+</head>
+<body>
+  <h1>投稿にいいね</h1>
+
+  <!-- いいねボタン -->
+  <button type="button" onclick="likePost(1)">いいね</button> <!-- 1は投稿ID -->
+
+  <script>
+    function likePost(postId) {
+      fetch('/like', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: postId })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          // いいねが成功した場合は、いいね数を表示
+          console.log(`いいね数: ${data.likes}`);
+          // 必要に応じてUIを更新
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    }
+  </script>
+</body>
+</html>

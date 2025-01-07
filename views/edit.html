@@ -1,0 +1,41 @@
+<!-- edit.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿の編集</title>
+</head>
+<body>
+  <h1>投稿の編集</h1>
+
+  <!-- 投稿の編集フォーム -->
+  <form id="editForm">
+    <input type="number" id="editPostId" placeholder="投稿ID" required>
+    <textarea id="editMessage" placeholder="新しいメッセージ" required></textarea>
+    <button type="button" onclick="editPost()">編集</button>
+  </form>
+
+  <script>
+    function editPost() {
+      const postId = document.getElementById("editPostId").value;
+      const newMessage = document.getElementById("editMessage").value;
+
+      fetch('/edit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: postId, newMessage: newMessage })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          // 編集が成功した場合は投稿を更新する処理を入れる
+          location.reload();  // ページをリロードして更新された内容を表示
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    }
+  </script>
+</body>
+</html>

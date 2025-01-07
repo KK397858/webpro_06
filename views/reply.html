@@ -1,0 +1,43 @@
+<!-- reply.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿への返信</title>
+</head>
+<body>
+  <h1>投稿への返信</h1>
+
+  <!-- 返信フォーム -->
+  <form id="replyForm">
+    <input type="number" id="parentId" placeholder="親投稿ID" required>
+    <input type="text" id="replyName" placeholder="名前" required>
+    <textarea id="replyMessage" placeholder="返信内容" required></textarea>
+    <button type="button" onclick="postReply()">返信</button>
+  </form>
+
+  <script>
+    function postReply() {
+      const parentId = document.getElementById("parentId").value;
+      const name = document.getElementById("replyName").value;
+      const message = document.getElementById("replyMessage").value;
+
+      fetch('/reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ parentId: parentId, name: name, message: message })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) {
+          // 返信が成功した場合はページをリロードして返信を表示
+          location.reload();
+        }
+      })
+      .catch(err => console.error('Error:', err));
+    }
+  </script>
+</body>
+</html>
