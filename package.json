@@ -1,5 +1,5 @@
 {
-  "name": "node-http-server",
+  "name": "http-server",
   "version": "1.0.0",
   "description": "Node.js example server starter project",
   "main": "src/index.js",
@@ -16,5 +16,7 @@
     "set-value": "^4.0.1",
     "sqlite3": ""
   },
-  "keywords": []
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBS</title>
+</head>
+<body>
+    <h1>BBS 投稿</h1>
+    <form action="/post" method="POST">
+        <label for="name">名前：</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="message">メッセージ：</label>
+        <textarea id="message" name="message" required></textarea><br>
+
+        <button type="submit">投稿</button>
+    </form>
+
+    <h2>投稿一覧</h2>
+    <ul id="postList"></ul>
+
+    <script>
+        async function loadPosts() {
+            const response = await fetch('/read', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ start: 0 })
+            });
+            const data = await response.json();
+            const postList = document.getElementById('postList');
+            postList.innerHTML = '';
+            data.messages.forEach(post => {
+                const li = document.createElement('li');
+                li.innerHTML = `${post.name}: ${post.message}`;
+                postList.appendChild(li);
+            });
+        }
+
+        loadPosts();
+    </script>
+</body>
+</html>
